@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.behzad.sugarLogook.features.bloodGlucose.data.BloodGlucoseDao
-import com.behzad.sugarLogook.features.bloodGlucose.data.BloodGlucoseEntry
-import com.behzad.sugarLogook.features.bloodGlucose.data.InstantConverter
+import com.behzad.sugarLogook.features.bloodGlucose.data.entries.BloodGlucoseDao
+import com.behzad.sugarLogook.features.bloodGlucose.data.entries.BloodGlucoseEntry
+import com.behzad.sugarLogook.features.bloodGlucose.data.entries.InstantConverter
 
 @Database(
     entities = [BloodGlucoseEntry::class],

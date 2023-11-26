@@ -1,4 +1,4 @@
-package com.behzad.sugarLogook.features.bloodGlucose.data
+package com.behzad.sugarLogook.features.bloodGlucose.data.entries
 
 import kotlinx.coroutines.flow.Flow
 

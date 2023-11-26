@@ -12,7 +12,7 @@
     <string name="unit_value_mmol_per_L">%.2f mmol/dL</string>
     <string name="unit_mg_per_dl">Mg/dL</string>
     <string name="unit_mmol_per_L">mmol/dL</string>
-    <string name="average_result">Your average is %.2f</string>
+    <string name="average_result">Your average is %.2f %s</string>
 
     <string name="user_detail_name">Name: %s</string>
     <string name="user_detail_bio">Bio: %s</string>

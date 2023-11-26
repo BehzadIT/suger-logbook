@@ -1,7 +1,7 @@
-package com.behzad.sugarLogook.features.bloodGlucose.data.usecase
+package com.behzad.sugarLogook.features.bloodGlucose.data.entries.usecase
 
-import com.behzad.sugarLogook.features.bloodGlucose.data.BloodGlucoseEntry
-import com.behzad.sugarLogook.features.bloodGlucose.data.BloodGlucoseRepository
+import com.behzad.sugarLogook.features.bloodGlucose.data.entries.BloodGlucoseEntry
+import com.behzad.sugarLogook.features.bloodGlucose.data.entries.BloodGlucoseRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetAllEntriesUseCase(private val bloodGlucoseRepository: BloodGlucoseRepository) {

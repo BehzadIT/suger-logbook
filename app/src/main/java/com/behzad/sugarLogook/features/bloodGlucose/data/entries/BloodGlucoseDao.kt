@@ -1,4 +1,4 @@
-package com.behzad.sugarLogook.features.bloodGlucose.data
+package com.behzad.sugarLogook.features.bloodGlucose.data.entries
 
 import androidx.room.Dao
 import androidx.room.Insert

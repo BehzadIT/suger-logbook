@@ -14,8 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.behzad.sugarLogook.features.bloodGlucose.data.BloodGlucoseEntry
-import com.behzad.sugarLogook.features.bloodGlucose.data.toReadableDate
+import com.behzad.sugarLogook.features.bloodGlucose.data.entries.BloodGlucoseEntry
+import com.behzad.sugarLogook.features.bloodGlucose.data.entries.toReadableDate
 
 @Composable
 internal fun GlucoseEntryRow(

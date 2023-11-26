@@ -38,8 +38,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.behzad.sugarLogook.R
-import com.behzad.sugarLogook.features.bloodGlucose.data.BloodGlucoseEntry
-import com.behzad.sugarLogook.features.bloodGlucose.data.GlucoseUnit
+import com.behzad.sugarLogook.features.bloodGlucose.data.entries.BloodGlucoseEntry
+import com.behzad.sugarLogook.features.bloodGlucose.data.units.GlucoseUnit
 import com.behzad.sugarLogook.features.shared.LoadableData
 import com.behzad.sugarLogook.features.shared.getErrorMessage
 import org.koin.androidx.compose.koinViewModel
@@ -66,7 +66,11 @@ fun HomeScreen(
             is LoadableData.Loaded -> {
                 Text(
                     modifier = Modifier.padding(horizontal = 16.dp),
-                    text = stringResource(id = R.string.average_result, result.data)
+                    text = stringResource(
+                        R.string.average_result,
+                        result.data,
+                        stringResource(unit.unitTextRes)
+                    )
                 )
             }
 
