@@ -6,7 +6,7 @@
     <string name="error_http_unknown">Something is not right, please try later</string>
 
     <string name="entry_input_hint">Glucose level…</string>
-    <string name="initial_search_screen_placeholder">Let\'s find some users!</string>
+    <string name="initial_search_screen_placeholder">No records in yours logbook!</string>
     <string name="empty_search_results_placeholder">No results found</string>
     <string name="unit_value_mg_per_dl">%.2f mg/dL</string>
     <string name="unit_value_mmol_per_L">%.2f mmol/dL</string>

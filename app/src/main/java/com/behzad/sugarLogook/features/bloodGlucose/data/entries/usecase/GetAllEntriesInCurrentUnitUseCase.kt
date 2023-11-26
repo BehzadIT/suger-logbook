@@ -7,7 +7,7 @@ import com.behzad.sugarLogook.features.bloodGlucose.data.units.usecase.GetBloodG
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 
-class GetAllEntriesUseCase(
+class GetAllEntriesInCurrentUnitUseCase(
     private val bloodGlucoseRepository: BloodGlucoseRepository,
     private val getBloodGlucoseUnitUseCase: GetBloodGlucoseUnitUseCase,
     private val convertGlucoseUnitUseCase: ConvertGlucoseUnitUseCase
@@ -16,13 +16,13 @@ class GetAllEntriesUseCase(
         return combine(
             bloodGlucoseRepository.getAllEntries(), getBloodGlucoseUnitUseCase()
         ) { entries, currentUnit ->
-            entries.map {
-                if (it.unit == currentUnit) {
-                    it
+            entries.map { entry ->
+                if (entry.unit == currentUnit) {
+                    entry
                 } else {
-                    it.copy(
+                    entry.copy(
                         level = convertGlucoseUnitUseCase(
-                            currentLevel = it.level, targetUnit = currentUnit
+                            currentLevel = entry.level, targetUnit = currentUnit
                         ), unit = currentUnit
                     )
 

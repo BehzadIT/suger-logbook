@@ -7,7 +7,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.behzad.sugarLogook.features.bloodGlucose.UserSearchViewModel
 import com.behzad.sugarLogook.features.bloodGlucose.data.entries.BloodGlucoseRepository
 import com.behzad.sugarLogook.features.bloodGlucose.data.entries.usecase.AddNewEntryUseCase
-import com.behzad.sugarLogook.features.bloodGlucose.data.entries.usecase.GetAllEntriesUseCase
+import com.behzad.sugarLogook.features.bloodGlucose.data.entries.usecase.GetAllEntriesInCurrentUnitUseCase
 import com.behzad.sugarLogook.features.bloodGlucose.data.entries.usecase.GetAverageOfEntriesUseCase
 import com.behzad.sugarLogook.features.bloodGlucose.data.units.BloodGlucoseUnitDataSource
 import com.behzad.sugarLogook.features.bloodGlucose.data.units.BloodGlucoseUnitRepository
@@ -32,7 +32,7 @@ object Modules {
         factory { UpdateBloodGlucoseUnitUseCase(get()) }
         factory { GetAverageOfEntriesUseCase(get(), get(), get()) }
         factory { ConvertGlucoseUnitUseCase() }
-        factory { GetAllEntriesUseCase(get(), get(), get()) }
+        factory { GetAllEntriesInCurrentUnitUseCase(get(), get(), get()) }
         factory { AddNewEntryUseCase(get()) }
     }
     val viewModels = module {

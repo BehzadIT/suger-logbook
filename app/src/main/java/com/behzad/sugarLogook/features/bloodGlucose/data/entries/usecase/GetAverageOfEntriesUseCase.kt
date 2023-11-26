@@ -11,11 +11,13 @@ class GetAverageOfEntriesUseCase(
     private val unitRepository: BloodGlucoseUnitRepository,
     private val convertGlucoseUnitUseCase: ConvertGlucoseUnitUseCase
 ) {
-    operator fun invoke(): Flow<Double> {
+    operator fun invoke(): Flow<Double?> {
         return combine(
             bloodGlucoseRepository.getAllEntries(),
             unitRepository.getUnit(),
         ) { entries, currentUnit ->
+            //return null if there are no entries
+            if(entries.isEmpty()) return@combine null
             val sumOfConvertedLevels = entries.filter { it.unit != currentUnit }
                 .sumOf { convertGlucoseUnitUseCase(it.level, currentUnit).toDouble() }
             val sumOfOriginalLevels =

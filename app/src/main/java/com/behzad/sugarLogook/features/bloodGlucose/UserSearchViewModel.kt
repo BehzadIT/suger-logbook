@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.behzad.sugarLogook.features.bloodGlucose.data.entries.BloodGlucoseEntry
 import com.behzad.sugarLogook.features.bloodGlucose.data.entries.usecase.AddNewEntryUseCase
-import com.behzad.sugarLogook.features.bloodGlucose.data.entries.usecase.GetAllEntriesUseCase
+import com.behzad.sugarLogook.features.bloodGlucose.data.entries.usecase.GetAllEntriesInCurrentUnitUseCase
 import com.behzad.sugarLogook.features.bloodGlucose.data.entries.usecase.GetAverageOfEntriesUseCase
 import com.behzad.sugarLogook.features.bloodGlucose.data.units.GlucoseUnit
 import com.behzad.sugarLogook.features.bloodGlucose.data.units.usecase.GetBloodGlucoseUnitUseCase
@@ -23,12 +23,12 @@ class UserSearchViewModel(
     app: Application,
     private val addNewEntryUseCase: AddNewEntryUseCase,
     private val updateBloodGlucoseUnitUseCase: UpdateBloodGlucoseUnitUseCase,
-    getAllEntriesUseCase: GetAllEntriesUseCase,
+    getAllEntriesInCurrentUnitUseCase: GetAllEntriesInCurrentUnitUseCase,
     getAverageOfEntriesUseCase: GetAverageOfEntriesUseCase,
     getBloodGlucoseUnitUseCase: GetBloodGlucoseUnitUseCase
 ) : AndroidViewModel(app) {
 
-    private val _entriesResult = getAllEntriesUseCase().map { LoadableData.Loaded(it) }
+    private val _entriesResult = getAllEntriesInCurrentUnitUseCase().map { LoadableData.Loaded(it) }
     val entriesResult =
         _entriesResult.stateIn(viewModelScope, SharingStarted.Lazily, LoadableData.NotLoaded)
 

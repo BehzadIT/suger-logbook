@@ -65,16 +65,18 @@ fun HomeScreen(
     ) {
         when (val result = averageResult) {
             is LoadableData.Loaded -> {
-                Text(
-                    modifier = Modifier.padding(horizontal = 16.dp),
-                    style = MaterialTheme.typography.titleMedium,
-                    text = stringResource(
-                        R.string.average_result,
-                        result.data,
-                        stringResource(unit.unitTextRes)
+                result.data?.let { average ->
+                    Text(
+                        modifier = Modifier.padding(horizontal = 16.dp),
+                        style = MaterialTheme.typography.titleMedium,
+                        text = stringResource(
+                            R.string.average_result,
+                            average,
+                            stringResource(unit.unitTextRes)
+                        )
                     )
-                )
-                Divider(modifier = Modifier.padding(16.dp))
+                    Divider(modifier = Modifier.padding(16.dp))
+                }
             }
 
             else -> {}
