@@ -12,7 +12,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun GitUserFinderTheme(
+fun SugarLogbookTheme(
     content: @Composable () -> Unit
 ) {
     MaterialTheme(

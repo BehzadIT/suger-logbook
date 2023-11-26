@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Github User Finder</string>
+    <string name="app_name">Sugar Logbook</string>
     <string name="error_connection_issue">Please check your internet connection</string>
     <string name="error_http_client">There is issue with the app, please try later</string>
     <string name="error_http_server">There is issue with our server, please try later</string>
@@ -13,10 +13,4 @@
     <string name="unit_mg_per_dl">Mg/dL</string>
     <string name="unit_mmol_per_L">mmol/dL</string>
     <string name="average_result">Your average is %.2f %s</string>
-
-    <string name="user_detail_name">Name: %s</string>
-    <string name="user_detail_bio">Bio: %s</string>
-    <string name="user_detail_company">Company: %s</string>
-    <string name="user_detail_location">Location: %s</string>
-    <string name="user_detail_follow_info">Followers: %d  &#160;&#160; Followings: %d</string>
 </resources>

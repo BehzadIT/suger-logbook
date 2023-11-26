@@ -2,20 +2,6 @@ package com.behzad.sugarLogook.features.shared
 
 import android.content.Context
 import com.behzad.sugarLogook.R
-import okio.IOException
-import retrofit2.HttpException
-
-suspend fun <T> tryWithCustomExceptions(action: suspend () -> T): T {
-    return try {
-        action()
-    } catch (e: HttpException) {
-        if (e.code() >= 400 && e.code() > 500) throw HttpClientError()
-        else if (e.code() >= 500) throw HttpServerError()
-        else throw e
-    } catch (e: IOException) {
-        throw NoConnectivityException()
-    }
-}
 
 fun Exception.getErrorMessage(context: Context): String {
     return when (this) {

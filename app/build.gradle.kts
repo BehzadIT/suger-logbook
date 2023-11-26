@@ -64,11 +64,6 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
-    implementation(libs.glide)
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.convertor)
-    implementation(libs.okhttp)
-    implementation(libs.kotlinx.serialization)
     implementation(libs.coil.compose)
 
     implementation(libs.navigation.compose)
@@ -91,6 +86,5 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
-    implementation(libs.gson)
 
 }
