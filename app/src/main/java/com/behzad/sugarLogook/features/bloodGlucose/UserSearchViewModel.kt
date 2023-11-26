@@ -49,6 +49,7 @@ class UserSearchViewModel(
                 level = requireNotNull(level.value), unit = unit.value, createdTime = Instant.now()
             )
             addNewEntryUseCase(entry)
+            _level.value = null
         }
     }
 

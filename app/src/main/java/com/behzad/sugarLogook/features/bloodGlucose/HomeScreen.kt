@@ -30,8 +30,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -46,6 +48,7 @@ import com.behzad.sugarLogook.features.shared.getErrorMessage
 import org.koin.androidx.compose.koinViewModel
 
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
@@ -70,9 +73,7 @@ fun HomeScreen(
                         modifier = Modifier.padding(horizontal = 16.dp),
                         style = MaterialTheme.typography.titleMedium,
                         text = stringResource(
-                            R.string.average_result,
-                            average,
-                            stringResource(unit.unitTextRes)
+                            R.string.average_result, average, stringResource(unit.unitTextRes)
                         )
                     )
                     Divider(modifier = Modifier.padding(16.dp))
@@ -104,11 +105,17 @@ fun HomeScreen(
             }
 
         }
-        Button(modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp), onClick = {
-            viewModel.addNewEntry()
-        }) {
+        val keyboardController = LocalSoftwareKeyboardController.current
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            enabled = level != null,
+            onClick = {
+                viewModel.addNewEntry()
+                //close keyboard after tabbing save
+                keyboardController?.hide()
+            }) {
             Text(text = "Save")
             Icon(
                 modifier = Modifier.padding(8.dp),
