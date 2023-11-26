@@ -6,10 +6,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -17,6 +19,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -35,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.behzad.sugarLogook.R
 import com.behzad.sugarLogook.features.bloodGlucose.data.BloodGlucoseEntry
+import com.behzad.sugarLogook.features.bloodGlucose.data.GlucoseUnit
 import com.behzad.sugarLogook.features.shared.LoadableData
 import com.behzad.sugarLogook.features.shared.getErrorMessage
 import org.koin.androidx.compose.koinViewModel
@@ -48,26 +52,28 @@ fun HomeScreen(
 ) {
     val level by viewModel.level.collectAsState()
     val entriesResult by viewModel.entries.collectAsState()
+    val unit by viewModel.unit.collectAsState()
     Column(
-        Modifier.fillMaxSize(),
+        Modifier
+            .fillMaxSize()
+            .padding(16.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = CenterHorizontally
     ) {
-        Row (verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start){
-            TextField(label = { Text(text = stringResource(id = R.string.entry_input_hint)) },
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start
+        ) {
+            TextField(
+                label = { Text(text = stringResource(id = R.string.entry_input_hint)) },
                 keyboardOptions = KeyboardOptions(
                     capitalization = KeyboardCapitalization.None,
                     keyboardType = KeyboardType.Decimal,
                     imeAction = ImeAction.Done
                 ),
-                modifier = Modifier
-                    .padding(16.dp),
+                suffix = { Text (stringResource(id = unit.unitTextRes)) },
+                modifier = Modifier.padding(16.dp),
                 value = level?.toString().orEmpty(),
-/*                trailingIcon = {
-                    Icon(
-                        imageVector = Icons.Default.Search, contentDescription = "Search"
-                    )
-                },*/
                 onValueChange = { text ->
                     viewModel.setLevel(text.toFloatOrNull())
                 })
@@ -77,6 +83,9 @@ fun HomeScreen(
             }) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
             }
+        }
+        RadioButtonVertical(modifier = Modifier.align(Alignment.Start), unit) {
+            viewModel.setUnit(it)
         }
 
         if (entriesResult.data?.isEmpty() == true) InvalidSearchQuery(modifier)
@@ -166,5 +175,32 @@ private fun EmptyResults(modifier: Modifier = Modifier) {
             text = stringResource(id = R.string.empty_search_results_placeholder),
             style = MaterialTheme.typography.titleLarge
         )
+    }
+}
+
+@Composable
+fun RadioButtonVertical(
+    modifier: Modifier,
+    selectedGlucoseUnit: GlucoseUnit,
+    onOptionSelect: (glucoseUnit: GlucoseUnit) -> Unit
+) {
+    Column(modifier, verticalArrangement = Arrangement.Center) {
+        GlucoseUnit.values().forEach { item ->
+            Row(
+                modifier = Modifier
+                    .selectable(selected = item == selectedGlucoseUnit, onClick = {
+                        onOptionSelect(item)
+                    })
+                    .padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically
+            ) {
+                RadioButton(modifier = Modifier.height(35.dp),
+                    selected = item == selectedGlucoseUnit,
+                    onClick = { onOptionSelect(item) })
+                Text(
+                    text = stringResource(id = item.unitTextRes),
+                    style = MaterialTheme.typography.bodySmall.merge()
+                )
+            }
+        }
     }
 }

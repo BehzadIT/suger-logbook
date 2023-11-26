@@ -22,9 +22,12 @@ data class BloodGlucoseEntry(
     @ColumnInfo(name = "createdTime") val createdTime: Instant
 )
 
-enum class GlucoseUnit(@Ignore @StringRes val textFormatRes: Int) {
-    MgperdL(R.string.unit_mg_per_dl),
-    MmolPerL(R.string.unit_mmol_per_L)
+enum class GlucoseUnit(
+    @Ignore @StringRes val unitTextRes: Int,
+    @Ignore @StringRes val unitValueTextFormatRes: Int
+) {
+    MgperdL(R.string.unit_mg_per_dl, R.string.unit_value_mg_per_dl),
+    MmolPerL(R.string.unit_mmol_per_L, R.string.unit_value_mmol_per_L)
 }
 
 class InstantConverter {

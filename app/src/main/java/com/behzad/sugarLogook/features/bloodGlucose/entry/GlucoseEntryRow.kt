@@ -39,7 +39,7 @@ internal fun GlucoseEntryRow(
                 .padding(16.dp)
 
         ) {
-            Text(text = stringResource(entry.unit.textFormatRes,entry.level))
+            Text(text = stringResource(entry.unit.unitValueTextFormatRes,entry.level))
             entry.createdTime.toReadableDate()?.let { Text(text = it) }
         }
     }
