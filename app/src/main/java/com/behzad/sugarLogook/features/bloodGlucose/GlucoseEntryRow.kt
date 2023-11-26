@@ -2,8 +2,8 @@ package com.behzad.sugarLogook.features.bloodGlucose
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -27,7 +27,6 @@ internal fun GlucoseEntryRow(
         ),
         modifier = Modifier
             .fillMaxWidth()
-            .height(120.dp)
             .padding(8.dp)
     ) {
 
@@ -35,12 +34,14 @@ internal fun GlucoseEntryRow(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .padding(16.dp)
 
         ) {
-            Text(text = stringResource(entry.unit.unitValueTextFormatRes,entry.level))
-            entry.createdTime.toReadableDate()?.let { Text(text = it) }
+            Text(text = stringResource(entry.unit.unitValueTextFormatRes, entry.level))
+            entry.createdTime.toReadableDate()
+                ?.let { Text(modifier = Modifier.padding(start = 16.dp),
+                    style = MaterialTheme.typography.bodySmall, text = it) }
         }
     }
 }

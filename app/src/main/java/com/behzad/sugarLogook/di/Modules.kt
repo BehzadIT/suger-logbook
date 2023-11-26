@@ -1,17 +1,17 @@
 package com.behzad.sugarLogook.di
 
-import com.behzad.sugarLogook.features.bloodGlucose.data.units.usecase.ConvertGlucoseUnitUseCase
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.behzad.sugarLogook.features.bloodGlucose.UserSearchViewModel
 import com.behzad.sugarLogook.features.bloodGlucose.data.entries.BloodGlucoseRepository
-import com.behzad.sugarLogook.features.bloodGlucose.data.units.BloodGlucoseUnitDataSource
-import com.behzad.sugarLogook.features.bloodGlucose.data.units.BloodGlucoseUnitRepository
 import com.behzad.sugarLogook.features.bloodGlucose.data.entries.usecase.AddNewEntryUseCase
 import com.behzad.sugarLogook.features.bloodGlucose.data.entries.usecase.GetAllEntriesUseCase
 import com.behzad.sugarLogook.features.bloodGlucose.data.entries.usecase.GetAverageOfEntriesUseCase
+import com.behzad.sugarLogook.features.bloodGlucose.data.units.BloodGlucoseUnitDataSource
+import com.behzad.sugarLogook.features.bloodGlucose.data.units.BloodGlucoseUnitRepository
+import com.behzad.sugarLogook.features.bloodGlucose.data.units.usecase.ConvertGlucoseUnitUseCase
 import com.behzad.sugarLogook.features.bloodGlucose.data.units.usecase.GetBloodGlucoseUnitUseCase
 import com.behzad.sugarLogook.features.bloodGlucose.data.units.usecase.UpdateBloodGlucoseUnitUseCase
 import com.behzad.sugarLogook.features.shared.AppDatabase
@@ -32,7 +32,7 @@ object Modules {
         factory { UpdateBloodGlucoseUnitUseCase(get()) }
         factory { GetAverageOfEntriesUseCase(get(), get(), get()) }
         factory { ConvertGlucoseUnitUseCase() }
-        factory { GetAllEntriesUseCase(get()) }
+        factory { GetAllEntriesUseCase(get(), get(), get()) }
         factory { AddNewEntryUseCase(get()) }
     }
     val viewModels = module {

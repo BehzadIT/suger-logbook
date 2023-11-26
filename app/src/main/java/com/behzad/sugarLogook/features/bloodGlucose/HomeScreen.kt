@@ -15,9 +15,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
@@ -66,12 +67,14 @@ fun HomeScreen(
             is LoadableData.Loaded -> {
                 Text(
                     modifier = Modifier.padding(horizontal = 16.dp),
+                    style = MaterialTheme.typography.titleMedium,
                     text = stringResource(
                         R.string.average_result,
                         result.data,
                         stringResource(unit.unitTextRes)
                     )
                 )
+                Divider(modifier = Modifier.padding(16.dp))
             }
 
             else -> {}
@@ -101,10 +104,15 @@ fun HomeScreen(
         }
         Button(modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp), onClick = {
+            .padding(16.dp), onClick = {
             viewModel.addNewEntry()
         }) {
-            Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
+            Text(text = "Save")
+            Icon(
+                modifier = Modifier.padding(8.dp),
+                imageVector = Icons.Default.Check,
+                contentDescription = "Add"
+            )
         }
 
         if (entriesResult.data?.isEmpty() == true) InvalidSearchQuery(modifier)

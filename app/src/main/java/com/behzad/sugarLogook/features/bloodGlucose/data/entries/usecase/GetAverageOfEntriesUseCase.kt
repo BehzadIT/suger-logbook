@@ -1,8 +1,8 @@
 package com.behzad.sugarLogook.features.bloodGlucose.data.entries.usecase
 
-import com.behzad.sugarLogook.features.bloodGlucose.data.units.usecase.ConvertGlucoseUnitUseCase
 import com.behzad.sugarLogook.features.bloodGlucose.data.entries.BloodGlucoseRepository
 import com.behzad.sugarLogook.features.bloodGlucose.data.units.BloodGlucoseUnitRepository
+import com.behzad.sugarLogook.features.bloodGlucose.data.units.usecase.ConvertGlucoseUnitUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 
