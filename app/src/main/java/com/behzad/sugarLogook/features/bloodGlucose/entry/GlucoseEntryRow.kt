@@ -18,7 +18,7 @@ import com.behzad.sugarLogook.features.bloodGlucose.data.BloodGlucoseEntry
 import com.behzad.sugarLogook.features.bloodGlucose.data.toReadableDate
 
 @Composable
-internal fun GithubUserRow(
+internal fun GlucoseEntryRow(
     entry: BloodGlucoseEntry, modifier: Modifier = Modifier
 ) {
     Card(

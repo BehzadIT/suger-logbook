@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.behzad.sugarLogook.features.bloodGlucose.entry.UserSearchScreen
+import com.behzad.sugarLogook.features.bloodGlucose.entry.HomeScreen
 
 @Composable
 fun SugarLogbookAppCompose() {
@@ -21,7 +21,7 @@ fun SugarLogbookNavHost(
 ) {
     NavHost(navController = navController, startDestination = "home") {
         composable("home") {
-            UserSearchScreen(navController = navController)
+            HomeScreen(navController = navController)
         }
     }
 }

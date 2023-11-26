@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
@@ -27,6 +28,9 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.behzad.sugarLogook.R
@@ -37,11 +41,10 @@ import org.koin.androidx.compose.koinViewModel
 
 
 @Composable
-fun UserSearchScreen(
+fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: UserSearchViewModel = koinViewModel(),
     navController: NavController
-
 ) {
     val level by viewModel.level.collectAsState()
     val entriesResult by viewModel.entries.collectAsState()
@@ -51,7 +54,12 @@ fun UserSearchScreen(
         horizontalAlignment = CenterHorizontally
     ) {
         Row (verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start){
-            TextField(label = { Text(text = stringResource(id = R.string.search_input_hint)) },
+            TextField(label = { Text(text = stringResource(id = R.string.entry_input_hint)) },
+                keyboardOptions = KeyboardOptions(
+                    capitalization = KeyboardCapitalization.None,
+                    keyboardType = KeyboardType.Decimal,
+                    imeAction = ImeAction.Done
+                ),
                 modifier = Modifier
                     .padding(16.dp),
                 value = level?.toString().orEmpty(),
@@ -97,7 +105,7 @@ private fun ResultsForValidSearchQuery(
             if (result.data.isEmpty()) {
                 EmptyResults()
             } else {
-                GithubUserList(result.data, modifier)
+                EntriesList(result.data, modifier)
             }
         }
 
@@ -124,12 +132,12 @@ fun ToastMessage(toastMessage: String) {
 }
 
 @Composable
-private fun GithubUserList(
+private fun EntriesList(
     users: List<BloodGlucoseEntry>, modifier: Modifier = Modifier
 ) {
     LazyColumn {
         items(users) { user ->
-            GithubUserRow(user, modifier)
+            GlucoseEntryRow(user, modifier)
         }
     }
 }
