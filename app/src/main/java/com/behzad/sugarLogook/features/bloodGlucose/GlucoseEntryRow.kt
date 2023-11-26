@@ -1,4 +1,4 @@
-package com.behzad.sugarLogook.features.bloodGlucose.entry
+package com.behzad.sugarLogook.features.bloodGlucose
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

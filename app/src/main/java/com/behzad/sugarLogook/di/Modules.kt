@@ -1,9 +1,9 @@
 package com.behzad.sugarLogook.di
 
 import com.behzad.sugarLogook.features.bloodGlucose.data.BloodGlucoseRepository
-import com.behzad.sugarLogook.features.bloodGlucose.entry.UserSearchViewModel
-import com.behzad.sugarLogook.features.bloodGlucose.entry.usecase.AddNewEntryUseCase
-import com.behzad.sugarLogook.features.bloodGlucose.entry.usecase.GetAllEntriesUseCase
+import com.behzad.sugarLogook.features.bloodGlucose.UserSearchViewModel
+import com.behzad.sugarLogook.features.bloodGlucose.data.usecase.AddNewEntryUseCase
+import com.behzad.sugarLogook.features.bloodGlucose.data.usecase.GetAllEntriesUseCase
 import com.behzad.sugarLogook.features.shared.AppDatabase
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext

@@ -1,4 +1,4 @@
-package com.behzad.sugarLogook.features.bloodGlucose.entry.usecase
+package com.behzad.sugarLogook.features.bloodGlucose.data.usecase
 
 import com.behzad.sugarLogook.features.bloodGlucose.data.BloodGlucoseEntry
 import com.behzad.sugarLogook.features.bloodGlucose.data.BloodGlucoseRepository

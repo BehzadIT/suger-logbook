@@ -1,4 +1,4 @@
-package com.behzad.sugarLogook.features.bloodGlucose.entry
+package com.behzad.sugarLogook.features.bloodGlucose
 
 import android.widget.Toast
 import androidx.activity.compose.ReportDrawn
@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -51,41 +52,55 @@ fun HomeScreen(
     navController: NavController
 ) {
     val level by viewModel.level.collectAsState()
-    val entriesResult by viewModel.entries.collectAsState()
+    val entriesResult by viewModel.entriesResult.collectAsState()
     val unit by viewModel.unit.collectAsState()
+    val averageResult by viewModel.average.collectAsState()
     Column(
         Modifier
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.Top,
-        horizontalAlignment = CenterHorizontally
+        horizontalAlignment = Alignment.Start
     ) {
+        when (val result = averageResult) {
+            is LoadableData.Loaded -> {
+                Text(
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    text = stringResource(id = R.string.average_result, result.data)
+                )
+            }
+
+            else -> {}
+        }
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
-            TextField(
-                label = { Text(text = stringResource(id = R.string.entry_input_hint)) },
+            TextField(label = { Text(text = stringResource(id = R.string.entry_input_hint)) },
                 keyboardOptions = KeyboardOptions(
                     capitalization = KeyboardCapitalization.None,
                     keyboardType = KeyboardType.Decimal,
                     imeAction = ImeAction.Done
                 ),
-                suffix = { Text (stringResource(id = unit.unitTextRes)) },
-                modifier = Modifier.padding(16.dp),
+                suffix = { Text(stringResource(id = unit.unitTextRes)) },
+                modifier = Modifier
+                    .weight(2f)
+                    .padding(16.dp),
                 value = level?.toString().orEmpty(),
                 onValueChange = { text ->
                     viewModel.setLevel(text.toFloatOrNull())
                 })
-
-            Button(onClick = {
-                viewModel.addNewEntry()
-            }) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
+            RadioButtonVertical(Modifier.weight(1f), unit) {
+                viewModel.setUnit(it)
             }
+
         }
-        RadioButtonVertical(modifier = Modifier.align(Alignment.Start), unit) {
-            viewModel.setUnit(it)
+        Button(modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp), onClick = {
+            viewModel.addNewEntry()
+        }) {
+            Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
         }
 
         if (entriesResult.data?.isEmpty() == true) InvalidSearchQuery(modifier)

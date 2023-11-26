@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.behzad.sugarLogook.features.bloodGlucose.entry.HomeScreen
+import com.behzad.sugarLogook.features.bloodGlucose.HomeScreen
 
 @Composable
 fun SugarLogbookAppCompose() {

@@ -72,6 +72,7 @@ dependencies {
     implementation(libs.coil.compose)
 
     implementation(libs.navigation.compose)
+    implementation(libs.datastore.sharedpref)
 
     implementation(libs.room.runtime)
     annotationProcessor(libs.room.compiler)

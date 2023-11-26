@@ -5,13 +5,14 @@
     <string name="error_http_server">There is issue with our server, please try later</string>
     <string name="error_http_unknown">Something is not right, please try later</string>
 
-    <string name="entry_input_hint">Enter your Glucose level…</string>
+    <string name="entry_input_hint">Enter Glucose level…</string>
     <string name="initial_search_screen_placeholder">Let\'s find some users!</string>
     <string name="empty_search_results_placeholder">No results found</string>
     <string name="unit_value_mg_per_dl">%.2f Mg/dL</string>
     <string name="unit_value_mmol_per_L">%.2f mmol/dL</string>
     <string name="unit_mg_per_dl">Mg/dL</string>
     <string name="unit_mmol_per_L">mmol/dL</string>
+    <string name="average_result">Your average is %.2f</string>
 
     <string name="user_detail_name">Name: %s</string>
     <string name="user_detail_bio">Bio: %s</string>
