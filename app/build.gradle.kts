@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.behzad.sugarLogook"
+    namespace = "com.behzad.sugarLogbook"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.behzad.sugarLogook"
+        applicationId = "com.behzad.sugarLogbook"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
